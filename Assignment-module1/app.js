@@ -11,10 +11,17 @@
     $scope.lunchStatus = "";
 
     $scope.lunchStatusFinder = function () {
-      if ($scope.lunch.length <=0){
-        $scope.lunchStatus= "Empty";
+      var emptyElement=0;
+      for(var x in $scope.lunch){ //Handles the empty elements in the list
+        if ($scope.lunch[x]==""){
+          emptyElement++;
+        }
       }
-      else if ($scope.lunch.length<=3){
+
+      if ($scope.lunch.length-emptyElement<=0){
+        $scope.lunchStatus= "Please enter data first";
+      }
+      else if ($scope.lunch.length-emptyElement<=3){
         $scope.lunchStatus= "Enjoy!";
       }
       else{
@@ -22,10 +29,19 @@
       }
     };
 
-    $scope.displayLunchStatus=function(){
-      //return lunchArray;
+    $scope.displayLunchStatus = function(){
       return $scope.lunchStatus;
     };
+
+    $scope.colorCode = function() {   //Implements font color coding in the message as well as text box border
+      if ($scope.lunchStatus=="Please enter data first"){
+        return "red";
+      }
+      else if ($scope.lunchStatus == "Enjoy!" || $scope.lunchStatus == "Too much!"){
+        return "green";
+      }
+    };
+
 }
 
 })();

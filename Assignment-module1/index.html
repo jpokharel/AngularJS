@@ -15,15 +15,14 @@
      <h1>Lunch Checker</h1>
          <div class="form-group">
              <input type="text" placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control" ng-model="lunch" ng-list="," ng-trim='true'> <!--ng-trim removes the spaces from the lunch items.-->
+             class="form-control" ng-model="lunch" ng-list="," ng-trim='true' style="border-color:{{colorCode()}}"> <!--ng-trim removes the spaces from the lunch items.-->
+             <label> *The program does NOT consider an empty element, i.e. ,  , as an item towards count.</label>
          </div>
          <div class="form-group">
              <button class="btn btn-default" ng-click="lunchStatusFinder()">Check If Too Much</button>
-             <br>
-             <label> *Inputs with spaces and only spaces are not counted</label>
-         </div>
+        </div>
          <div class="form-group message">
-           <label>{{displayLunchStatus()}}</label>
+           <label style="color:{{colorCode()}}">{{displayLunchStatus()}}</label>
          </div>
    </div>
 
