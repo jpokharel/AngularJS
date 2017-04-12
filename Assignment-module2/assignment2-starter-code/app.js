@@ -26,25 +26,68 @@ var shoppingListItems=[
 
 var boughtListItems=[];
 
-angular.module('ShoppingList',[])
-  .controller('ShoppingListController',ShoppingListController)
-  .controller('BoughtListController',BoughtListController);
+angular.module('ShoppingListCheckOff',[])
+  .controller('ToBuyController',ToBuyController )
+  .controller('AlreadyBoughtController',AlreadyBoughtController)
+  .service('ShoppingListCheckOffService',ShoppingListCheckOffService);
 
 
-ShoppingListController.$inject=['$scope'];
-function ShoppingListController($scope){
-  $scope.shoppingListItems=shoppingListItems;
-  $scope.boughtListItems=boughtListItems;
+ToBuyController .$inject=['ShoppingListCheckOffService'];
+function ToBuyController (ShoppingListCheckOffService){
+  var toBuy=this;
+  toBuy.toBuyArray=ShoppingListCheckOffService.getToBuyItems();
 
-  $scope.buyItemFromList=function(index){
-    $scope.boughtListItems.push(shoppingListItems[index]);
-    $scope.shoppingListItems.splice(index,1);
+  toBuy.buyItemFromList=  function(index){
+    ShoppingListCheckOffService.buyItemFromList(index);
   };
 }
 
-BoughtListController.$inject=['$scope'];
-function BoughtListController($scope){
-  $scope.boughtListItems=boughtListItems;
+AlreadyBoughtController.$inject=['ShoppingListCheckOffService'];
+function AlreadyBoughtController(ShoppingListCheckOffService){
+  var bought=this;
+  bought.boughtArray=ShoppingListCheckOffService.getBoughtItems();
 }
 
+
+function ShoppingListCheckOffService(){
+  var service=this;
+  var toBuyArray=[
+    {
+      name: "Fruits",
+      quantity: "10"
+    },
+    {
+      name: "Coffee",
+      quantity: "2"
+    },
+    {
+      name: "Lobster",
+      quantity: "5"
+    },
+    {
+      name: "Jalapeno",
+      quantity: "18"
+    },
+    {
+      name: "Mac and Cheese",
+      quantity: "1"
+    }
+  ];
+
+  var boughtArray=[];
+
+  service.getToBuyItems=function(){
+    return toBuyArray;
+  };
+
+  service.getBoughtItems=function(){
+    return boughtArray;
+  };
+
+  service.buyItemFromList=function(index){
+    boughtArray.push(toBuyArray[index]);
+    toBuyArray.splice(index,1);
+  };
+
+}
 })();
