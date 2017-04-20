@@ -29,7 +29,7 @@ function NarrowItDownController(MenuSearchService,$scope){
 
     menu.removeItem = function(index){
       menu.found.splice(index,1);
-      emptyMessage="";
+      menu.emptyMessage="";
     }
 
     menu.narrowItDown = function () {
