@@ -1,7 +1,11 @@
+<table>
 <ul>
   <li ng-repeat='menu_item in found'>
-    {{menu_item.name}} , <strong>{{menu_item.short_name}}</strong> , <em>{{menu_item.description}}</em>
-    <button class="btn btn-primary" ng-click="onRemove({index:$index});">Don't want this one!</button>
+    <strong>{{menu_item.name}}</strong><br/>
+    <strong><font color='green'>({{menu_item.short_name}})</font></strong> <br/>
+    <em>{{menu_item.description}}</em><br/>
+    <button   class="btn btn-primary" ng-click="onRemove({index:$index});">Don't want this one!</button>
+    <br/><br/><br/>
   </li>
 </ul>
-<div ng-if="found.length === 0">{{emptyMessage}}</div>
+<div ng-if="found.length === 0" class="emptyMessage">{{emptyMessage}}</div>
