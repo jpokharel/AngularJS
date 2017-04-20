@@ -9,29 +9,15 @@ angular.module('NarrowItDownApp',[])
 
 function FoundItems(){
   var ddo={
-    templateUrl: 'foundItems.html'
-    // scope:{
-    //    narrowList: '=foundItems'
-    //  }
-      // title: '@',
-      // onRemove: '<'
-    // },
-    // controller: FoundItemsDirectiveController,
-    // controllerAs: 'narrowList',
-    // bindToController: true
+    templateUrl: 'foundItems.html',
+    scope:{
+        found: '<',
+        onRemove: '&',
+        emptyMessage: '<'
+      }
   };
   return ddo;
 }
-
-// function FoundItemsDirectiveController(){
-//   var list=this;
-//
-//   list.menuItemsInList=function(){
-//     if(list.foundItems.length>0)
-//       return true;
-//     return false;
-//   }
-// }
 
 NarrowItDownController.$inject=['MenuSearchService','$scope'];
 function NarrowItDownController(MenuSearchService,$scope){

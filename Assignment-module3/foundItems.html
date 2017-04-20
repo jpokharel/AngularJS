@@ -1,7 +1,7 @@
 <ul>
-  <li ng-repeat='menu_item in narrowCtrl.found'>
+  <li ng-repeat='menu_item in found'>
     {{menu_item.name}} , <strong>{{menu_item.short_name}}</strong> , <em>{{menu_item.description}}</em>
-    <button class="btn btn-primary" ng-click="narrowCtrl.removeItem($index);">Don't want this one!</button>
+    <button class="btn btn-primary" ng-click="onRemove({index:$index});">Don't want this one!</button>
   </li>
 </ul>
-<div ng-if="narrowCtrl.found.length === 0">{{narrowCtrl.emptyMessage}}</div>
+<div ng-if="found.length === 0">{{emptyMessage}}</div>
