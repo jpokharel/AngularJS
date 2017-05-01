@@ -12,8 +12,8 @@
 
     // GETs all the categories
     service.getAllCategories = function(){
-    var deferred = $q.defer();
-    $http({
+    //var deferred = $q.defer();
+    var categories = $http({
               method: "GET",
               url: ("https://davids-restaurant.herokuapp.com/categories.json")
             }).then(function (response) {
@@ -23,13 +23,7 @@
           }).catch(function (error) {
                   console.log("Error while retrieving the categories data.");
           });
-      //console.log(response.data);
-      $timeout(function(){
-        deferred.resolve(categories);
-      },100);
-
-      return deferred.promise;
-    //  return categories;
+      return categories;
     };
 
     //GETs all the Items for the Category

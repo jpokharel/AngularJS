@@ -1,16 +1,15 @@
 (function(){
   'use strict';
 
-  angular.module('data')
+  angular.module('MenuApp')
   .controller('MenuCategoriesController',MenuCategoriesController);
 
-  MenuCategoriesController.$inject = ['categories'];
-  function MenuCategoriesController(categories){
+  MenuCategoriesController.$inject = ['categoriesItems'];
+  function MenuCategoriesController(categoriesItems){
     var menuCategories = this;
-    console.log("This is categories---------------");
-    console.log(categories);
-    console.log("Completed the categories------------");
-    menuCategories.categories = categories;
+    menuCategories.categoriesItems=[];
+
+    menuCategories.categoriesItems = categoriesItems;
   }
 
 
