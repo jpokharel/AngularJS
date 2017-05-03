@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('data')
-  .service('MenuDataService ',MenuDataService );
+  .service('MenuDataService ',MenuDataService);
   //Use URLBase path here.
 
   MenuDataService.$inject=['$q','$timeout','$http'];
