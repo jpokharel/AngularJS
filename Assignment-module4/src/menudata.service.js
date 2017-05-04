@@ -1,51 +1,49 @@
-(function(){
-  'use strict';
-  angular.module('data')
-  .service('MenuDataService ',MenuDataService);
-  //Use URLBase path here.
+(function () {
+'use strict';
 
-  MenuDataService.$inject=['$q','$timeout','$http'];
-  function MenuDataService ($q,$timeout,$http){
-    var service=this;
-    var categories=[];
-    var items = [];
+angular.module('data')
+.service('MenuDataService', MenuDataService);
 
-    // GETs all the categories
-    service.getAllCategories = function(){
-    //var deferred = $q.defer();
-    var categories = $http({
+
+MenuDataService.$inject = ['$http']
+function MenuDataService($http) {
+  var service = this;
+  // Simulates call to server
+  // Returns a promise, NOT items array directly
+  service.getAllCategories = function(){
+    var response = $http({
               method: "GET",
               url: ("https://davids-restaurant.herokuapp.com/categories.json")
-            }).then(function (response) {
-            for ( var i = 0 ; i < response.data.length ; i++ ) {
-              categories.push(response.data[i]);
-            }
-          }).catch(function (error) {
-                  console.log("Error while retrieving the categories data.");
-          });
-      return categories;
+            }).then(function(result){
+              return result.data;
+            });
+    return response;
     };
 
-    //GETs all the Items for the Category
-    service.getItemsForCategory = function(categoryShortName){
+  service.getItemsForCategory = function(categoryShortName){
+    // var response = $http({
+    //           method: "GET",
+    //           url: ("https://davids-restaurant.herokuapp.com/menu_items.json?category="),
+    //           params:{ category: categoryShortName}
+    //         }).then(function(result){
+    //           return result.data;
+    //         });
+    // return response;
 
-      $http({
-              method: "GET",
-              url: ("https://davids-restaurant.herokuapp.com/categories.json"),
-              params:{
-                category: categoryShortName
+    var items = [];
+    $http({
+            method: "GET",
+            url: ("https://davids-restaurant.herokuapp.com/menu_items.json?category="),
+            params:{category:categoryShortName}
+        }).then(function (response) {
+              for ( var i = 0 ; i < response.data.menu_items.length ; i++ ) {
+                    items.push( response.data.menu_items[i] );
               }
-          }).then(function (response) {
-            for ( var i = 0 ; i < response.data.length ; i++ ) {
-              items.push(response.data);
-            }
-          }).catch(function (error) {
-                  console.log("Error while retrieving the items data.");
-          });
-
-      return items;
-    };
-  }
-
+        }).catch(function (error) {
+                console.log("Error while retrieving the data.");
+        });
+    return items;
+  };
+}
 
 })();

@@ -1,25 +1,14 @@
-(function(){
-  'use strict';
+(function () {
+'use strict';
 
-  angular.module('MenuApp')
-  .controller('MenuCategoriesController',MenuCategoriesController);
-
-  MenuCategoriesController.$inject = ['categoriesItems'];
-  function MenuCategoriesController(categoriesItems){
-    var menuCategories = this;
-    menuCategories.categoriesItems=[];
-
-    menuCategories.categoriesItems = categoriesItems;
-  }
+angular.module('MenuApp')
+.controller('CategoriesController', CategoriesController);
 
 
-  // MenuCategoriesController.$inject = ['MenuDataService'];
-  // function MenuCategoriesController(MenuDataService){
-  //   return MenuDataService.getAllCategories();
-  // }
-
-
-
-
+CategoriesController.$inject = ['categories'];
+function CategoriesController(categories) {
+  var categoryList = this;
+  categoryList.categories = categories;
+}
 
 })();

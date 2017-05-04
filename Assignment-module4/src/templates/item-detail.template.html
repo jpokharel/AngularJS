@@ -1,0 +1,11 @@
+<!-- <div>Item name: {{ itemDetail.name }}</div>
+<div>Item description: {{ itemDetail.description }}</div> -->
+<ol>
+  <li ng-repeat="item in itemDetail.items">
+    <font color='red'><strong>Item : {{item.name}}</strong></font><br/>
+    <strong> Description:</strong> {{item.description}}<br/>
+    <div ng-if="item.price_small"><strong>Price Small:</strong>{{item.price_small}}</br></div>
+    <div ng-if="item.price_large"><strong>Price Large:</strong>{{item.price_large}}<br/><br/>
+</ol>
+<items-detail items="itemDetail.items"></items-detail>
+<ui-view></ui-view>

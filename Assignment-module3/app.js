@@ -59,6 +59,7 @@ function MenuSearchService($http){
     $http({
             method: "GET",
             url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
+            //url: ("https://davids-restaurant.herokuapp.com/categories.json")
         }).then(function (response) {
               for ( var i = 0 ; i < response.data.menu_items.length ; i++ ) {
                   if ( ( response.data.menu_items[i].description.toLowerCase().indexOf(searchTerm)) !== -1 ) {

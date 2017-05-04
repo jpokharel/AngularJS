@@ -1,0 +1,11 @@
+<ul>
+
+  <li ng-repeat="item in $ctrl.categories">
+    <!--  ui-sref="categories.itemDetail({itemId: $index})"> -->
+    <strong><font color='green'>({{ item.short_name }})</font></strong><br/>
+    <button ui-sref="itemDetail({itemCategory: item.short_name})">{{ item.name }}</button>
+    <br/><br/>
+    <!-- This has to route the state reference to pull all the items in that category -->
+  </li>
+
+</ul>
